@@ -8,11 +8,18 @@ namespace Cinema.Model.Models
     public class Tag
     {
         [Key]
+        [MaxLength(50)]
         public string ID { set; get; }
 
+        [MaxLength(50)]
+        [Required]
         public string Name { set; get; }
+
+        [MaxLength(50)] 
+        [Required]
         public string Type { set; get; }
-        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+
+        public virtual IEnumerable<MovieTag> MovieTags { set; get; }
         public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }

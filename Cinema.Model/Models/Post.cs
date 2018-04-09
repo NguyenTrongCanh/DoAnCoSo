@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Cinema.Model.Abstract;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
-using Cinema.Model.Abstract;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Cinema.Model.Models
 {
@@ -16,30 +14,36 @@ namespace Cinema.Model.Models
         public int ID { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string Name { set; get; }
 
         [Required]
+        [MaxLength(256)] 
+        [Column(TypeName = "varchar")]
         public string Alias { set; get; }//Bí danh
 
         public int CategoryID { set; get; }//Loại phim
 
-        [Required]
-        public string CinemaTheater { set; get; }//Tên rạp
+        //[Required]
+        // [MaxLength(256)]
+        // public string CinemaTheater { set; get; }//Tên rạp
+
+        // [Required]
+        // public string Date { set; get; }//Ngày Chiếu
 
         [Required]
-        public DateTime Date { set; get; }//Ngày Chiếu
-
-        [Required]
+        [MaxLength(256)]
         public string Image { set; get; }//Hình
 
         public XElement MoreImage { set; get; }//Ảnh liên quan
 
-        [Required]
-        public decimal Price { set; get; }//Giá
+        // [Required]
+        // public decimal Price { set; get; }//Giá
 
         public decimal? PromotionPrice { set; get; }//Giá ưu đãi
 
         [Required]
+        [MaxLength(500]
         public string Desciption { set; get; }//Miêu tả
 
         [Required]
@@ -63,6 +67,7 @@ namespace Cinema.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }
+
         public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }

@@ -11,17 +11,20 @@ namespace Cinema.Model.Models
         public int ID { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string Name { set; get; }
-
+        [MaxLength(256)]
         public string Decription { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string Image { set; get; }
 
         [Required]
+        [MaxLength(256)] 
         public string URL { set; get; }
 
-        public int DisplayOrder { set; get; }
+        public int? DisplayOrder { set; get; }
 
         [Required]
         public bool Status { set; get; }

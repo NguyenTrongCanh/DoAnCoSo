@@ -13,22 +13,26 @@ namespace Cinema.Model.Models
         public int ID { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string CustomerName { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string CustomerAddress { set; get; }
 
         [Required]
+        [MaxLength(256)]
         public string CustomerEmail { set; get; }
 
         [Required]
+        [MaxLength(50)]
         public string CustomerPhone { set; get; }
-
+        [MaxLength(256)]
         public string CustomerMessage { set; get; }
-
+        [MaxLength(256)]
         public string PaymenMethod { set; get; }
 
-        [Required]
+        
         public string PaymentStatus { set; get; }
 
         //public string Status { set; get; }

@@ -3,19 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinema.Model.Models
 {
-    [Table("PostTags")]
-    public class PostTag
+    [Table("MovieTags")]
+    public class MovieTag
     {
         [Key]
-        public int PostID { set; get; }
+        public int MovieID { set; get; }
 
         [Key]
         [Column(TypeName = "varchar")]
         [MaxLength(50)]
         public string TagID { set; get; }
 
-        [ForeignKey("PostID")]
-        public virtual Post Post { set; get; }
+        [ForeignKey("MovieID")]
+        public virtual Movie Movie { set; get; }
 
         [ForeignKey("TagID")]
         public virtual Tag Tag { set; get; }
