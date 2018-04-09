@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Cinema.Model.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinema.Model.Models
 {
     [Table("Menus")]
-    public class Menu
+    public class Menu : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
@@ -27,7 +28,7 @@ namespace Cinema.Model.Models
 
         public string Target { set; get; }
 
-        [Required]
-        public bool Status { set; get; }
+        //[Required]
+        //public bool Status { set; get; }
     }
 }

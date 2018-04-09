@@ -22,7 +22,7 @@ namespace Cinema.Model.Models
         public bool? HomeFlag { set; get; }
 
         public virtual IEnumerable<Movie> Moives { set; get; }
-
+        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
 
 
     }

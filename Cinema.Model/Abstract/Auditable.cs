@@ -21,6 +21,7 @@ namespace Cinema.Model.Abstract
         [MaxLength(256)]
         public string MetaDesciption { set; get; }
 
+        [Required]
         public bool Status { set; get; }
     }
 }

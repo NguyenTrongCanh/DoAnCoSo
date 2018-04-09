@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cinema.Model.Models
 {
     [Table("Days")]
     public class Day
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
 
-        public DateTime Date { set; get; }
-        [ForeignKey("NameMovie")]
-        public string NameMovie { set; get; }
-        public virtual Movie Movie { set; get; }
-        [ForeignKey("NameTheater")]
-        public string NameTheater { set; get; }
+        [Required]
+        public string Date { set; get; }
 
+        public virtual IEnumerable<Time> Times { set; get; }
+        public virtual IEnumerable<Movie> Movies { set; get; }
     }
 }
