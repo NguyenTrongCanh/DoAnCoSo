@@ -18,32 +18,23 @@ namespace Cinema.Model.Models
         public string Name { set; get; }
 
         [Required]
-        [MaxLength(256)] 
+        [MaxLength(256)]
         [Column(TypeName = "varchar")]
         public string Alias { set; get; }//Bí danh
 
         public int CategoryID { set; get; }//Loại phim
 
-        //[Required]
-        // [MaxLength(256)]
-        // public string CinemaTheater { set; get; }//Tên rạp
-
-        // [Required]
-        // public string Date { set; get; }//Ngày Chiếu
-
         [Required]
         [MaxLength(256)]
         public string Image { set; get; }//Hình
 
-        public XElement MoreImage { set; get; }//Ảnh liên quan
-
-        // [Required]
-        // public decimal Price { set; get; }//Giá
+        [Column(TypeName ="xml")]
+        public string MoreImage { set; get; }//Ảnh liên quan
 
         public decimal? PromotionPrice { set; get; }//Giá ưu đãi
 
         [Required]
-        [MaxLength(500]
+        [MaxLength(500)]
         public string Desciption { set; get; }//Miêu tả
 
         [Required]
@@ -62,8 +53,6 @@ namespace Cinema.Model.Models
         public string Age { set; get; }//Lứa tuổi
 
         public bool? HomeFlag { set; get; }
-        //public bool? HotFlag { set; get; }
-        //public int? ViewCount { set; get; }
 
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }

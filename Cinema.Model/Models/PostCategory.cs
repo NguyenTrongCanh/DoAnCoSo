@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinema.Model.Models
 {
-    [Table("PostCategorys")]
+    [Table("PostCategories")]
     public class PostCategory
     {
         [Key]

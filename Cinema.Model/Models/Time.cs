@@ -14,18 +14,6 @@ namespace Cinema.Model.Models
         [Required]
         public string TimeMovie { set; get; }//Time là các giờ, suất chiếu theo ngày.
 
-        [ForeignKey("DayID")]
-        public int DayID { set; get; }// ID ngày cho danh sách ngày lấy từ bảng Days
-
-        public virtual Day Day { set; get; }
-
-        //[Required]
-        //public int MovieID { set; get; }
-
-        //[ForeignKey("TheaterID")]
-        //public int TheaterID { set; get; }
-        //public virtual Theater Theater { set; get; }
-
         public virtual IEnumerable<Movie> Movies { set; get; }
     }
 }

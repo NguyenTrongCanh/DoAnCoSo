@@ -14,7 +14,6 @@ namespace Cinema.Model.Models
         [Required]
         public string NameTheater { set; get; }
 
-        //public virtual IEnumerable<Time> Times { set; get; }
         public virtual IEnumerable<Movie> Movies { set; get; }
     }
 }

@@ -50,7 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoAnCoSoDbContext.cs" />
+    <Compile Include="Infastructure\DbFactory.cs" />
+    <Compile Include="Infastructure\Disposable.cs" />
+    <Compile Include="Infastructure\IDbFactory.cs" />
+    <Compile Include="Infastructure\IRepositorycs.cs" />
+    <Compile Include="Infastructure\IUnitOfWork.cs" />
+    <Compile Include="Infastructure\RepositoryBase.cs" />
+    <Compile Include="Infastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201804130116206_InitialDB.cs" />
+    <Compile Include="Migrations\201804130116206_InitialDB.Designer.cs">
+      <DependentUpon>201804130116206_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MovieCategoryRepository.cs" />
+    <Compile Include="Repositories\MovieRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -61,6 +76,15 @@
       <Project>{16de476a-0dee-43b0-b1e7-e01baab13080}</Project>
       <Name>Cinema.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinema.Model\Cinema.Model.csproj">
+      <Project>{448f6eda-e1cd-466e-9f58-c214eb8b7588}</Project>
+      <Name>Cinema.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804130116206_InitialDB.resx">
+      <DependentUpon>201804130116206_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

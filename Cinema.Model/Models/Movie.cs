@@ -23,22 +23,17 @@ namespace Cinema.Model.Models
 
         public int CategoryID { set; get; }//Loại phim
 
-        public string DayID { set; get; }//Ngày
-        //[Required]
-        //public string CinemaTheater { set; get; }//Tên rạp
+        public int DayID { set; get; }//Ngày
 
-        public string TheaterID { set; get; }//ID rạp
+        public int TheaterID { set; get; }//ID rạp
 
-        //[Required]
-        //public string TimeMovie { set; get; }//Giờ chiếu
-
-        public string TimeID { set; get; }//ID Thời Gian
+        public int TimeID { set; get; }//ID Thời Gian
 
         [Required]
         [MaxLength(256)]
         public string Image { set; get; }//Hình
-
-        public XElement MoreImage { set; get; }//Ảnh liên quan
+        [Column(TypeName = "xml")]
+        public string MoreImage { set; get; }//Ảnh liên quan
 
         [Required]
         public decimal Price { set; get; }//Giá
@@ -80,7 +75,7 @@ namespace Cinema.Model.Models
         public virtual Theater Theater { set; get; }
 
         [ForeignKey("DayID")]
-        public virtual Day Days { set; get; }
+        public virtual Day Day { set; get; }
 
         public virtual IEnumerable<MovieTag> MovieTags { set; get; }
     }
