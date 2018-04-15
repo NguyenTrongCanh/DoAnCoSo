@@ -2,9 +2,8 @@
 using Cinema.Model.Models;
 
 namespace Cinema.Data.Repositories
-
 {
-    public interface IMovieRepository
+    public interface IMovieRepository : IRepository<Movie>
     {
     }
 

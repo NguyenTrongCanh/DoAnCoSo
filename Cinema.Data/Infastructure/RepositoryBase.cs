@@ -33,9 +33,9 @@ namespace Cinema.Data.Infastructure
         }
 
         #region Implementation
-        public virtual T Add(T entity)
+        public virtual void Add(T entity)
         {
-            return dbSet.Add(entity);
+             dbSet.Add(entity);
         }
 
         public virtual void Update(T entity)
@@ -44,14 +44,14 @@ namespace Cinema.Data.Infastructure
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual T Delete(T entity)
+        public virtual void Delete(T entity)
         {
-            return dbSet.Remove(entity);
+             dbSet.Remove(entity);
         }
-        public virtual T Delete(int id)
+        public virtual void Delete(int id)
         {
             var entity = dbSet.Find(id);
-            return dbSet.Remove(entity);
+             dbSet.Remove(entity);
         }
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {

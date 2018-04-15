@@ -7,12 +7,13 @@ using System.Linq;
 
 namespace Cinema.Data.Repositories
 {
+    public interface IMovieCategoryRepository : IRepository<MovieCategory>
+    {
+        IEnumerable<MovieCategory> GetByAlias(string alias);
+    }
     public class MovieCategoryRepository : RepositoryBase<MovieCategory>
     {
-        public interface IMovieCategoryRepository
-        {
-            IEnumerable<MovieCategory> GetByAlias(string alias);
-        }
+        
         public MovieCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
             {  
 
