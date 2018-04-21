@@ -9,11 +9,11 @@ namespace Cinema.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int TimeID { set; get; } 
 
-        [Required]
-        public string TimeMovie { set; get; }//Time là các giờ, suất chiếu theo ngày.
-
-        public virtual IEnumerable<Movie> Movies { set; get; }
+        public string Name { set; get; }
+        public string StartTime { set; get; }
+        public string AmountOfTime { set; get; }
+        public virtual IEnumerable<ShowTime> ShowTimes { set; get; }
     }
 }

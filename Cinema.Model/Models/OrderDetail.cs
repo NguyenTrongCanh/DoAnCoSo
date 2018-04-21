@@ -12,14 +12,19 @@ namespace Cinema.Model.Models
 
         [Column(Order = 2)]
         [Key]
-        public int ProductID { set; get; }
+        public int MovieID { set; get; } 
 
-        [ForeignKey("ProductID")]
-        public virtual MovieCategory MovieCategory { set; get; }
+        public int FoodID { set; get; }
+
+        [ForeignKey("MovieID")]
+        public virtual Movie Movie { set; get; }
 
         [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }
+         
+        [ForeignKey("FoodID")]
+        public virtual Food Food { set; get; }
 
-        public int Quantily { set; get; }
+        public int Quantity { set; get; }
     }
 }

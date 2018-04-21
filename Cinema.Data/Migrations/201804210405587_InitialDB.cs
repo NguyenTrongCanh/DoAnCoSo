@@ -8,37 +8,41 @@ namespace Cinema.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Days",
+                "dbo.Foods",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
-                        Date = c.String(nullable: false),
+                        FoodID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 100),
+                        Images = c.String(maxLength: 100),
+                        Price = c.Int(nullable: false),
+                        Decription = c.String(maxLength: 100),
+                        InventoryItem = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.FoodID);
             
             CreateTable(
                 "dbo.Footers",
                 c => new
                     {
-                        ID = c.String(nullable: false, maxLength: 50),
+                        FooterID = c.String(nullable: false, maxLength: 50),
                         Content = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.FooterID);
             
             CreateTable(
                 "dbo.MenuGroups",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        GroupID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.GroupID);
             
             CreateTable(
                 "dbo.Menus",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        MenuID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
                         URL = c.String(nullable: false, maxLength: 256),
                         DisplayOrder = c.Int(),
@@ -52,7 +56,7 @@ namespace Cinema.Data.Migrations
                         MetaDesciption = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.MenuID)
                 .ForeignKey("dbo.MenuGroups", t => t.GroupID, cascadeDelete: true)
                 .Index(t => t.GroupID);
             
@@ -60,7 +64,7 @@ namespace Cinema.Data.Migrations
                 "dbo.MovieCategories",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        CategoryID = c.Int(nullable: false, identity: true),
                         NameMovie = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256),
                         Desciption = c.String(maxLength: 500),
@@ -68,19 +72,16 @@ namespace Cinema.Data.Migrations
                         Image = c.String(maxLength: 256),
                         HomeFlag = c.Boolean(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.CategoryID);
             
             CreateTable(
                 "dbo.Movies",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        MovieID = c.Int(nullable: false, identity: true),
                         NameMovie = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256),
                         CategoryID = c.Int(nullable: false),
-                        DayID = c.Int(nullable: false),
-                        TheaterID = c.Int(nullable: false),
-                        TimeID = c.Int(nullable: false),
                         Image = c.String(nullable: false, maxLength: 256),
                         MoreImage = c.String(storeType: "xml"),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -103,33 +104,9 @@ namespace Cinema.Data.Migrations
                         MetaDesciption = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Days", t => t.DayID, cascadeDelete: true)
+                .PrimaryKey(t => t.MovieID)
                 .ForeignKey("dbo.MovieCategories", t => t.CategoryID, cascadeDelete: true)
-                .ForeignKey("dbo.Theater", t => t.TheaterID, cascadeDelete: true)
-                .ForeignKey("dbo.Times", t => t.TimeID, cascadeDelete: true)
-                .Index(t => t.CategoryID)
-                .Index(t => t.DayID)
-                .Index(t => t.TheaterID)
-                .Index(t => t.TimeID);
-            
-            CreateTable(
-                "dbo.Theater",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        NameTheater = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Times",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        TimeMovie = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
+                .Index(t => t.CategoryID);
             
             CreateTable(
                 "dbo.MovieTags",
@@ -148,25 +125,28 @@ namespace Cinema.Data.Migrations
                 "dbo.Tags",
                 c => new
                     {
-                        ID = c.String(nullable: false, maxLength: 50, unicode: false),
+                        TagID = c.String(nullable: false, maxLength: 50, unicode: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Type = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.TagID);
             
             CreateTable(
                 "dbo.OrderDetails",
                 c => new
                     {
                         OrderID = c.Int(nullable: false),
-                        ProductID = c.Int(nullable: false),
-                        Quantily = c.Int(nullable: false),
+                        MovieID = c.Int(nullable: false),
+                        FoodID = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.OrderID, t.ProductID })
-                .ForeignKey("dbo.MovieCategories", t => t.ProductID, cascadeDelete: true)
+                .PrimaryKey(t => new { t.OrderID, t.MovieID })
+                .ForeignKey("dbo.Foods", t => t.FoodID, cascadeDelete: true)
+                .ForeignKey("dbo.Movies", t => t.MovieID, cascadeDelete: true)
                 .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
                 .Index(t => t.OrderID)
-                .Index(t => t.ProductID);
+                .Index(t => t.MovieID)
+                .Index(t => t.FoodID);
             
             CreateTable(
                 "dbo.Orders",
@@ -212,7 +192,7 @@ namespace Cinema.Data.Migrations
                 "dbo.PostCategories",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        CategoryID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256, unicode: false),
                         Desciption = c.String(maxLength: 500),
@@ -220,13 +200,13 @@ namespace Cinema.Data.Migrations
                         Image = c.String(maxLength: 256),
                         HomeFlag = c.Boolean(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.CategoryID);
             
             CreateTable(
                 "dbo.Posts",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        PostID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256, unicode: false),
                         CategoryID = c.Int(nullable: false),
@@ -248,7 +228,7 @@ namespace Cinema.Data.Migrations
                         MetaDesciption = c.String(maxLength: 256),
                         Status = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.PostID)
                 .ForeignKey("dbo.PostCategories", t => t.CategoryID, cascadeDelete: true)
                 .Index(t => t.CategoryID);
             
@@ -264,6 +244,45 @@ namespace Cinema.Data.Migrations
                 .ForeignKey("dbo.Tags", t => t.TagID, cascadeDelete: true)
                 .Index(t => t.PostID)
                 .Index(t => t.TagID);
+            
+            CreateTable(
+                "dbo.ShowTimes",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        StartDay = c.DateTime(nullable: false),
+                        EndDay = c.DateTime(nullable: false),
+                        MovieID = c.Int(nullable: false),
+                        TheaterID = c.Int(nullable: false),
+                        TimeID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Movies", t => t.MovieID, cascadeDelete: true)
+                .ForeignKey("dbo.Theater", t => t.TheaterID, cascadeDelete: true)
+                .ForeignKey("dbo.Times", t => t.TimeID, cascadeDelete: true)
+                .Index(t => t.MovieID)
+                .Index(t => t.TheaterID)
+                .Index(t => t.TimeID);
+            
+            CreateTable(
+                "dbo.Theater",
+                c => new
+                    {
+                        TheaterID = c.Int(nullable: false, identity: true),
+                        NameTheater = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.TheaterID);
+            
+            CreateTable(
+                "dbo.Times",
+                c => new
+                    {
+                        TimeID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        StartTime = c.String(),
+                        AmountOfTime = c.String(),
+                    })
+                .PrimaryKey(t => t.TimeID);
             
             CreateTable(
                 "dbo.Slides",
@@ -337,28 +356,30 @@ namespace Cinema.Data.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.ShowTimes", "TimeID", "dbo.Times");
+            DropForeignKey("dbo.ShowTimes", "TheaterID", "dbo.Theater");
+            DropForeignKey("dbo.ShowTimes", "MovieID", "dbo.Movies");
             DropForeignKey("dbo.PostTags", "TagID", "dbo.Tags");
             DropForeignKey("dbo.PostTags", "PostID", "dbo.Posts");
             DropForeignKey("dbo.Posts", "CategoryID", "dbo.PostCategories");
             DropForeignKey("dbo.OrderDetails", "OrderID", "dbo.Orders");
-            DropForeignKey("dbo.OrderDetails", "ProductID", "dbo.MovieCategories");
+            DropForeignKey("dbo.OrderDetails", "MovieID", "dbo.Movies");
+            DropForeignKey("dbo.OrderDetails", "FoodID", "dbo.Foods");
             DropForeignKey("dbo.MovieTags", "TagID", "dbo.Tags");
             DropForeignKey("dbo.MovieTags", "MovieID", "dbo.Movies");
-            DropForeignKey("dbo.Movies", "TimeID", "dbo.Times");
-            DropForeignKey("dbo.Movies", "TheaterID", "dbo.Theater");
             DropForeignKey("dbo.Movies", "CategoryID", "dbo.MovieCategories");
-            DropForeignKey("dbo.Movies", "DayID", "dbo.Days");
             DropForeignKey("dbo.Menus", "GroupID", "dbo.MenuGroups");
+            DropIndex("dbo.ShowTimes", new[] { "TimeID" });
+            DropIndex("dbo.ShowTimes", new[] { "TheaterID" });
+            DropIndex("dbo.ShowTimes", new[] { "MovieID" });
             DropIndex("dbo.PostTags", new[] { "TagID" });
             DropIndex("dbo.PostTags", new[] { "PostID" });
             DropIndex("dbo.Posts", new[] { "CategoryID" });
-            DropIndex("dbo.OrderDetails", new[] { "ProductID" });
+            DropIndex("dbo.OrderDetails", new[] { "FoodID" });
+            DropIndex("dbo.OrderDetails", new[] { "MovieID" });
             DropIndex("dbo.OrderDetails", new[] { "OrderID" });
             DropIndex("dbo.MovieTags", new[] { "TagID" });
             DropIndex("dbo.MovieTags", new[] { "MovieID" });
-            DropIndex("dbo.Movies", new[] { "TimeID" });
-            DropIndex("dbo.Movies", new[] { "TheaterID" });
-            DropIndex("dbo.Movies", new[] { "DayID" });
             DropIndex("dbo.Movies", new[] { "CategoryID" });
             DropIndex("dbo.Menus", new[] { "GroupID" });
             DropTable("dbo.VisitorStatistics");
@@ -366,6 +387,9 @@ namespace Cinema.Data.Migrations
             DropTable("dbo.SystemConfigs");
             DropTable("dbo.SupportOnlines");
             DropTable("dbo.Slides");
+            DropTable("dbo.Times");
+            DropTable("dbo.Theater");
+            DropTable("dbo.ShowTimes");
             DropTable("dbo.PostTags");
             DropTable("dbo.Posts");
             DropTable("dbo.PostCategories");
@@ -374,14 +398,12 @@ namespace Cinema.Data.Migrations
             DropTable("dbo.OrderDetails");
             DropTable("dbo.Tags");
             DropTable("dbo.MovieTags");
-            DropTable("dbo.Times");
-            DropTable("dbo.Theater");
             DropTable("dbo.Movies");
             DropTable("dbo.MovieCategories");
             DropTable("dbo.Menus");
             DropTable("dbo.MenuGroups");
             DropTable("dbo.Footers");
-            DropTable("dbo.Days");
+            DropTable("dbo.Foods");
         }
     }
 }

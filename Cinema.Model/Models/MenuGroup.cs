@@ -9,7 +9,7 @@ namespace Cinema.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
-        public int ID { set; get; }
+        public int GroupID { set; get; }
 
         [Required]
         [MaxLength(50)] 

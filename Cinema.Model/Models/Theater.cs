@@ -9,11 +9,12 @@ namespace Cinema.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int TheaterID { set; get; }
 
         [Required]
-        public string NameTheater { set; get; }
+        public string NameTheater { set; get; } 
 
-        public virtual IEnumerable<Movie> Movies { set; get; }
+       
+        public virtual IEnumerable<ShowTime> ShowTimes { set; get; }
     }
 }

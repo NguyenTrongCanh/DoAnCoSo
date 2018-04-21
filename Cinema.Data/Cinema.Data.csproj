@@ -58,13 +58,13 @@
     <Compile Include="Infastructure\IUnitOfWork.cs" />
     <Compile Include="Infastructure\RepositoryBase.cs" />
     <Compile Include="Infastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201804130116206_InitialDB.cs" />
-    <Compile Include="Migrations\201804130116206_InitialDB.Designer.cs">
-      <DependentUpon>201804130116206_InitialDB.cs</DependentUpon>
+    <Compile Include="Migrations\201804210405587_InitialDB.cs" />
+    <Compile Include="Migrations\201804210405587_InitialDB.Designer.cs">
+      <DependentUpon>201804210405587_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DayRepository.cs" />
+    <Compile Include="Repositories\FoodRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTagRepository.cs" />
+    <Compile Include="Repositories\ShowTimeRepository.cs" />
     <Compile Include="Repositories\SlideRepository.cs" />
     <Compile Include="Repositories\SupportOnlineRepository.cs" />
     <Compile Include="Repositories\SystemConfigRepository.cs" />
@@ -101,8 +102,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804130116206_InitialDB.resx">
-      <DependentUpon>201804130116206_InitialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804210405587_InitialDB.resx">
+      <DependentUpon>201804210405587_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

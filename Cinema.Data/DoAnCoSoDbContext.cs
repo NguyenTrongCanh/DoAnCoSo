@@ -11,7 +11,7 @@ namespace Cinema.Data
         }
 
         //Khai báo các bảng
-        public DbSet<Day> Days { set; get; }
+
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
@@ -29,9 +29,11 @@ namespace Cinema.Data
         public DbSet<SystemConfig> SystemConfigs { set; get; }
         public DbSet<Tag> Tags { set; get; }
         public DbSet<Theater> Theaters { set; get; }
-        public DbSet<Time> Times { set; get; }
         public DbSet<User> Users { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
+        public DbSet<Food> Foods { set; get; }
+        public DbSet<Time> Times { set; get; }
+        public DbSet<ShowTime> ShowTimes { set; get; }
 
         //Ghi đè phương thức DbContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

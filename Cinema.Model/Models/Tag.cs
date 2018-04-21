@@ -9,8 +9,8 @@ namespace Cinema.Model.Models
     {
         [Key]
         [MaxLength(50)]
-        [Column(TypeName = "varchar")]
-        public string ID { set; get; }
+        [Column(TypeName = "varchar")] 
+        public string TagID { set; get; }
 
         [MaxLength(50)]
         [Required]

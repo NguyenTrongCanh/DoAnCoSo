@@ -6,10 +6,10 @@ namespace Cinema.Model.Models
 {
     [Table("PostCategories")]
     public class PostCategory
-    {
+    { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
-        public int ID { set; get; }
+        public int CategoryID { set; get; }
 
         [Required]
         [MaxLength(256)]

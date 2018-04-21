@@ -9,7 +9,7 @@ namespace Cinema.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
-        public int ID { set; get; }
+        public int CategoryID { set; get; } 
 
         [Required]
         [MaxLength(256)]
@@ -30,6 +30,6 @@ namespace Cinema.Model.Models
         public bool? HomeFlag { set; get; }
 
         public virtual IEnumerable<Movie> Moives { set; get; }
-        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+      
     }
 }

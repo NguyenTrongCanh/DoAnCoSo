@@ -11,8 +11,8 @@ namespace Cinema.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
-        public int ID { set; get; }
-
+        public int PostID { set; get; }
+         
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
