@@ -11,7 +11,7 @@ namespace Cinema.Data
         }
 
         //Khai báo các bảng
-
+       
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }

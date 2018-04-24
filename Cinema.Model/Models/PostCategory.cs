@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Cinema.Model.Abstract;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinema.Model.Models
 {
     [Table("PostCategories")]
-    public class PostCategory
+    public class PostCategory:Auditable
     { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
@@ -22,6 +23,7 @@ namespace Cinema.Model.Models
 
         [MaxLength(500)]
         public string Desciption { set; get; }//Miêu tả
+        public int ParentID { set; get; }
 
         public int? DisplayOrder { set; get; }
 
