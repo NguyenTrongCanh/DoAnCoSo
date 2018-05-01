@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Cinema.Model.Models
 {
     [Table("PostCategories")]
-    public class PostCategory:Auditable
-    { 
+    public class PostCategory : Auditable
+    {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Tự động tăng
-        public int CategoryID { set; get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
 
         [Required]
         [MaxLength(256)]
@@ -19,16 +19,16 @@ namespace Cinema.Model.Models
         [Required]
         [Column(TypeName = "varchar")]
         [MaxLength(256)]
-        public string Alias { set; get; }//Bí danh
+        public string Alias { set; get; }
 
         [MaxLength(500)]
-        public string Desciption { set; get; }//Miêu tả
-        public int ParentID { set; get; }
+        public string Description { set; get; }
 
+        public int? ParentID { set; get; }
         public int? DisplayOrder { set; get; }
 
         [MaxLength(256)]
-        public string Image { set; get; }//Hình
+        public string Image { set; get; }
 
         public bool? HomeFlag { set; get; }
 

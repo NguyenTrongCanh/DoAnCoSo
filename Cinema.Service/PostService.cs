@@ -11,6 +11,7 @@ namespace Cinema.Service
 {
     public interface IPostService
     {
+       
         void Add(Post post);
         void Update(Post post);
         void Delete(int id);
@@ -29,6 +30,7 @@ namespace Cinema.Service
             this._postRepository = postRepository;
             this._unitofwork = unitOfWork;
         }
+       
         public void Add(Post post)
         {
             _postRepository.Add(post);

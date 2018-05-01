@@ -34,7 +34,7 @@ namespace Cinema.Data
         public DbSet<Food> Foods { set; get; }
         public DbSet<Time> Times { set; get; }
         public DbSet<ShowTime> ShowTimes { set; get; }
-
+        public DbSet<Error> Errors { set; get; }
         //Ghi đè phương thức DbContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
